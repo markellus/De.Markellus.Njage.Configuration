@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "De.Markellus.Njage.Configuration", "..\src\De.Markellus.Njage.Configuration.shproj", "{5F6F3603-E5FF-4903-AFE9-4F3EA285F7A3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "De.Markellus.Njage.NetInternals", "..\..\De.Markellus.Njage.NetInternals\src\De.Markellus.Njage.NetInternals.shproj", "{8B8E670E-51F0-45FE-9A1C-227A99F0F58F}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "De.Markellus.Njage.Debugging", "..\..\De.Markellus.Njage.Debugging\src\De.Markellus.Njage.Debugging.shproj", "{BD8010BF-0C12-4C66-AD3E-0E1892D7C3E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "..\tests\Tests.csproj", "{55189663-BA15-4E4E-AD39-94CBF10E393B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBuild", "TestBuild.csproj", "{02D9D644-D223-40CA-856D-B90EF1742F95}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\src\De.Markellus.Njage.Configuration.projitems*{5f6f3603-e5ff-4903-afe9-4f3ea285f7a3}*SharedItemsImports = 13
+		..\..\De.Markellus.Njage.NetInternals\src\De.Markellus.Njage.NetInternals.projitems*{8b8e670e-51f0-45fe-9a1c-227a99f0f58f}*SharedItemsImports = 13
+		..\..\De.Markellus.Njage.Debugging\src\De.Markellus.Njage.Debugging.projitems*{bd8010bf-0c12-4c66-ad3e-0e1892d7c3e4}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug-Windows|x64 = Debug-Windows|x64
+		Release|x64 = Release|x64
+		Release-Windows|x64 = Release-Windows|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Debug|x64.ActiveCfg = Debug|x64
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Debug|x64.Build.0 = Debug|x64
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Debug-Windows|x64.ActiveCfg = Debug-Windows|x64
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Debug-Windows|x64.Build.0 = Debug-Windows|x64
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Release|x64.ActiveCfg = Release|x64
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Release|x64.Build.0 = Release|x64
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Release-Windows|x64.ActiveCfg = Release-Windows|x64
+		{55189663-BA15-4E4E-AD39-94CBF10E393B}.Release-Windows|x64.Build.0 = Release-Windows|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Debug|x64.ActiveCfg = Debug|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Debug|x64.Build.0 = Debug|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Debug-Windows|x64.ActiveCfg = Debug-Windows|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Debug-Windows|x64.Build.0 = Debug-Windows|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Release|x64.ActiveCfg = Release|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Release|x64.Build.0 = Release|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Release-Windows|x64.ActiveCfg = Release-Windows|x64
+		{02D9D644-D223-40CA-856D-B90EF1742F95}.Release-Windows|x64.Build.0 = Release-Windows|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48F6AE96-68BD-47EA-9AEB-19A9A62FDE8A}
+	EndGlobalSection
+EndGlobal

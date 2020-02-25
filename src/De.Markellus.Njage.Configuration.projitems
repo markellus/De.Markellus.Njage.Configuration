@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5f6f3603-e5ff-4903-afe9-4f3ea285f7a3</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>De.Markellus.Njage.Configuration</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)njAbstractConfigNodeParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)njConfigNodeParserLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)njAbstractConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)njFileConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\njEnumParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\njIntParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\njListParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\njStringParser.cs" />
+  </ItemGroup>
+</Project>
