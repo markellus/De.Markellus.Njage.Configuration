@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<njageconfig version="1.1">
+  <infolist content="string" type="list">
+    <item value="first index" type="string"/>
+    <item value="second index" type="string"/>
+    <item value="third index" type="string"/>
+  </infolist>
+</njageconfig>

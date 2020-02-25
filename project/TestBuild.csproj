@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <Company></Company>
+        <Product>Not Just Another Graphics Engine - Configuration Test Build</Product>
+        <NeutralLanguage>de-DE</NeutralLanguage>
+        <AssemblyName>De.Markellus.Njage.Configuration</AssemblyName>
+        <RootNamespace>De.Markellus.Njage.Configuration</RootNamespace>
+        <Platforms>x64</Platforms>
+        <Configurations>Debug;Release;Release-Windows;Debug-Windows</Configurations>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <OutputPath>..\bin\Debug\</OutputPath>
+      <PlatformTarget>x64</PlatformTarget>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <NoWarn>1701;1702;CS0649;CS0219</NoWarn>
+      <DefineConstants>DEBUG;TRACE;STBSHARP_INTERNAL</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Debug-Windows'">
+      <OutputPath>..\bin\Debug-Windows-x64\</OutputPath>
+      <PlatformTarget>x64</PlatformTarget>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <NoWarn>1701;1702;CS0649;CS0219</NoWarn>
+      <DefineConstants>DEBUG;TRACE;STBSHARP_INTERNAL</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <OutputPath>..\bin\Release\</OutputPath>
+      <PlatformTarget>x64</PlatformTarget>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <DefineConstants>TRACE;STBSHARP_INTERNAL</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release-Windows'">
+      <OutputPath>..\bin\Release-Windows-x64\</OutputPath>
+      <PlatformTarget>x64</PlatformTarget>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <DefineConstants>TRACE;STBSHARP_INTERNAL</DefineConstants>
+    </PropertyGroup>
+
+    <Import Project="..\src\De.Markellus.Njage.Configuration.projitems" Label="Shared" />
+
+    <Import Project="..\..\De.Markellus.Njage.NetInternals\src\De.Markellus.Njage.NetInternals.projitems" Label="Shared" />
+
+    <Import Project="..\..\De.Markellus.Njage.Debugging\src\De.Markellus.Njage.Debugging.projitems" Label="Shared" />
+
+    <ItemGroup>
+      <Compile Remove="Tests\**" />
+      <EmbeddedResource Remove="Tests\**" />
+      <None Remove="Tests\**" />
+    </ItemGroup>
+
+
+</Project>
