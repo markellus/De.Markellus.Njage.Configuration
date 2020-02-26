@@ -1,7 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
+﻿/***********************************************************/
+/* NJAGE Engine - Configuration Framework                  */
+/*                                                         */
+/* Copyright 2020 Marcel Bulla. All rights reserved.       */
+/* Licensed under the MIT License. See LICENSE in the      */
+/* project root for license information.                   */
+/***********************************************************/
+
+using System;
 using System.Xml;
 using De.Markellus.Njage.NetInternals;
 

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/***********************************************************/
+/* NJAGE Engine - Configuration Framework                  */
+/*                                                         */
+/* Copyright 2020 Marcel Bulla. All rights reserved.       */
+/* Licensed under the MIT License. See LICENSE in the      */
+/* project root for license information.                   */
+/***********************************************************/
+
+using System;
 using System.IO;
 using System.Xml;
 using static De.Markellus.Njage.Debugging.njLogger;
@@ -6,7 +14,7 @@ using static De.Markellus.Njage.Debugging.njLogger;
 namespace De.Markellus.Njage.Configuration
 {
     /// <summary>
-    /// Eine Sammlung von Einstellungen, basierend auf einem XML-Dokument.
+    /// A collection of settings based on an XML document.
     /// </summary>
     public class njFileConfiguration : njAbstractConfiguration, IDisposable
     {
@@ -14,11 +22,10 @@ namespace De.Markellus.Njage.Configuration
         private XmlDocument _document;
 
         /// <summary>
-        /// Erstellt eine neue yfConfigCollection.
+        /// Creates a new configuration based on an XML file.
         /// </summary>
-        /// <param name="strPath">Pfad zu einer Konfigurationsdatei. Wenn die Datei nicht existiert oder nicht geladen
-        /// werden kann ist die Sammlung ungültig.</param>
-        /// <param name="bWriteable">true wenn es möglich sein soll die Konfiguration zu überschreiben, ansonsten false.</param>
+        /// <param name="strPath">Path to the XML file.</param>
+        /// <param name="bWriteable">true if it should be possible to overwrite the configuration, otherwise false.</param>
         public njFileConfiguration(string strPath, bool bWriteable = false)
         {
             CanWrite = bWriteable;
@@ -42,11 +49,10 @@ namespace De.Markellus.Njage.Configuration
         }
 
         /// <summary>
-        /// Erstellt eine neue yfConfigCollection.
+        /// Creates a new configuration based on an XML file.
         /// </summary>
-        /// <param name="stream">Ein Stream, aus dem die Konfigurationsdatei ausgelesen werden soll. Wenn die Datei nicht existiert oder nicht geladen
-        /// werden kann ist die Sammlung ungültig.</param>
-        /// <param name="bWriteable">true wenn es möglich sein soll die Konfiguration zu überschreiben, ansonsten false.</param>
+        /// <param name="stream">A stream from which the configuration file should be read.</param>
+        /// <param name="bWriteable">true if it should be possible to overwrite the configuration, otherwise false.</param>
         public njFileConfiguration(Stream stream, bool bWriteable = false)
         {
             _streamBackend = stream;
@@ -59,7 +65,7 @@ namespace De.Markellus.Njage.Configuration
         }
 
         /// <summary>
-        /// Erstellt eine neue Konfiguration und schreibt Diese in den Stream.
+        /// Creates a new configuration and writes it to the stream backend.
         /// </summary>
         private void CreateConfiguration()
         {

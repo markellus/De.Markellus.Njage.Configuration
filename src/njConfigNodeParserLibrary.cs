@@ -22,7 +22,7 @@ namespace De.Markellus.Njage.Configuration
         private static Mutex _mutex;
 
         /// <summary>
-        /// Liste mit verfügbaren Konfigurations-Typen
+        /// List with available configuration types
         /// </summary>
         private static readonly Dictionary<string, njAbstractConfigNodeParser> _dicParsersByAttribute;
 
