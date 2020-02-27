@@ -29,6 +29,10 @@ namespace De.Markellus.Njage.Configuration
             SubRoot = nodeSubRoot;
             CanWrite = true;
         }
+
+        internal njSubConfiguration() : this(new XmlDocument().CreateElement("__node"))
+        {
+        }
         
         protected override void LoadXmlStructure(out XmlElement nodeRoot)
         {
@@ -55,7 +59,7 @@ namespace De.Markellus.Njage.Configuration
         public static njSubConfiguration CreateChild(this njAbstractConfiguration configParent, string strIdentifier,
             int iIndex = 0)
         {
-            njSubConfiguration configSub = new njSubConfiguration(configParent.CreateDocumentNode());
+            njSubConfiguration configSub = new njSubConfiguration();
             configSub.LoadConfiguration();
             configParent.Set(strIdentifier, configSub, iIndex);
             return configSub;

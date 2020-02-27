@@ -44,7 +44,7 @@ namespace De.Markellus.Njage.Configuration.Parsers
 
                 foreach (XmlElement nodeSub in configSub.SubRoot)
                 {
-                    node.AppendChild(nodeSub.CloneNode(true));
+                    node.AppendChild(node.OwnerDocument.ImportNode(nodeSub, true));
                 }
             }
 
