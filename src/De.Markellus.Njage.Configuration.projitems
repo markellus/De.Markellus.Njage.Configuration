@@ -13,9 +13,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)njConfigNodeParserLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)njAbstractConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)njFileConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)njSubConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parsers\njEnumParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parsers\njIntParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parsers\njListParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parsers\njStringParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\njSubConfigurationParser.cs" />
   </ItemGroup>
 </Project>

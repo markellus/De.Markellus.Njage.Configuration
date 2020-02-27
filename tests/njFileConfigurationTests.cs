@@ -365,6 +365,46 @@ namespace De.Markellus.Njage.Configuration
             CloseTestConfig("DeleteAllItems.xml", config);
         }
 
+        [Test]
+        public void ReadSubConfig()
+        {
+            var config = OpenTestConfig("SubConfig.xml", false);
+            config.LoadConfiguration();
+            Assert.IsTrue(config.IsValid);
+            Assert.AreEqual(1, config.Count);
+
+            njSubConfiguration configSub = config.Get<njSubConfiguration>("subconfig");
+            Assert.NotNull(configSub);
+            Assert.IsTrue(configSub.IsValid);
+            Assert.AreEqual(3, configSub.Count);
+            Assert.AreEqual("first index", configSub.Get("item", "", 0), "Falscher Wert");
+            Assert.AreEqual("second index", configSub.Get("item", "", 1), "Falscher Wert");
+            Assert.AreEqual("third index", configSub.Get("item", "", 2), "Falscher Wert");
+
+            CloseTestConfig("SubConfig.xml", config);
+        }
+
+        [Test]
+        public void WriteSubConfig()
+        {
+            var config = OpenTestConfig("WriteSubConfig.xml", true);
+            config.LoadConfiguration();
+            Assert.IsTrue(config.IsValid);
+            Assert.AreEqual(0, config.Count);
+            
+
+            njSubConfiguration configSub = config.GetSubConfig("subconfig", 0);
+            Assert.NotNull(configSub);
+            Assert.IsTrue(configSub.IsValid);
+            Assert.AreEqual(0, configSub.Count);
+            
+            configSub.Set("item", "first index", 0);
+            configSub.Set("item", "second index", 1);
+            configSub.Set("item", "third index", 2);
+
+            CloseTestConfig("WriteSubConfig.xml", config);
+        }
+
         //TODO: Diverse Get-Fälle: falscher Datentyp geschirben, Fehler beim Parsen, falscher Wert im value-Attribut, etc.
 
 

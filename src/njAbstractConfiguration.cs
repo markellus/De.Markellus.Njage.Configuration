@@ -18,6 +18,8 @@ namespace De.Markellus.Njage.Configuration
     /// </summary>
     public abstract class njAbstractConfiguration
     {
+        #region Fields
+        
         /// <summary>
         /// The root element of the xml document
         /// </summary>
@@ -27,6 +29,10 @@ namespace De.Markellus.Njage.Configuration
         /// A Dictionary with all loaded settings.
         /// </summary>
         private Dictionary<string, List<object>> _dicConfigs;
+        
+        #endregion
+        
+        #region Properties
 
         /// <summary>
         /// Returns true if it is possible to overwrite this configuration.
@@ -42,6 +48,8 @@ namespace De.Markellus.Njage.Configuration
         /// Returns whether the configuration is valid.
         /// </summary>
         public bool IsValid { get; protected set; }
+        
+        #endregion
 
         /// <summary>
         /// Reads the configuration.
@@ -55,13 +63,8 @@ namespace De.Markellus.Njage.Configuration
                 ReadConfigurationNode(_nodeRoot, "");
             }
         }
-
-        /// <summary>
-        /// Loads the xml structure of the the configuration.
-        /// </summary>
-        /// <param name="nodeRoot">The root element of the loaded xml configuration, or null if the configuration is
-        /// invalid./param>
-        protected abstract void LoadXmlStructure(out XmlElement nodeRoot);
+        
+        #region Public Methods
 
         /// <summary>
         /// Saves the configuration. This will silently fail if the configuration is invalid or read only.
@@ -76,12 +79,6 @@ namespace De.Markellus.Njage.Configuration
             WriteConfigurationNode(_nodeRoot, "", new Dictionary<string, List<object>>(_dicConfigs));
             WriteXmlStructure(_nodeRoot);
         }
-
-        /// <summary>
-        /// Writes the xml structure of the configuration.
-        /// </summary>
-        /// <param name="nodeRoot">The root element of the loaded xml configuration.</param>
-        protected abstract void WriteXmlStructure(XmlElement nodeRoot);
 
         /// <summary>
         /// Returns a setting.
@@ -178,7 +175,33 @@ namespace De.Markellus.Njage.Configuration
                 listNodes.Clear();
             }
         }
+        
+        #endregion
 
+        #region Protected Methods
+        
+        internal XmlElement CreateDocumentNode()
+        {
+            return _nodeRoot.OwnerDocument.CreateElement("__node");
+        }
+        
+        /// <summary>
+        /// Loads the xml structure of the the configuration.
+        /// </summary>
+        /// <param name="nodeRoot">The root element of the loaded xml configuration, or null if the configuration is
+        /// invalid./param>
+        protected abstract void LoadXmlStructure(out XmlElement nodeRoot);
+        
+        /// <summary>
+        /// Writes the xml structure of the configuration.
+        /// </summary>
+        /// <param name="nodeRoot">The root element of the loaded xml configuration.</param>
+        protected abstract void WriteXmlStructure(XmlElement nodeRoot);
+
+        #endregion
+
+        #region Private Methods
+        
         private void ReadConfigurationNode(XmlElement nodeCurrent, string strCurrentNode)
         {
             foreach (XmlElement nodeSub in nodeCurrent.ChildNodes)
@@ -272,5 +295,7 @@ namespace De.Markellus.Njage.Configuration
         {
             return strCurrentNode + (string.IsNullOrEmpty(strCurrentNode) ? "" : ".") + nodeSub.LocalName;
         }
+        
+        #endregion
     }
 }
