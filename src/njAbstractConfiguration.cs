@@ -147,6 +147,38 @@ namespace De.Markellus.Njage.Configuration
             }
         }
 
+        /// <summary>
+        /// Deletes a setting, if <see cref="CanWrite"/> is set to true.
+        /// </summary>
+        /// <param name="strIdentifier">The identifier of the setting.</param>
+        /// <param name="iIndex">An index, if there is more than one setting available via the given
+        /// <see cref="strIdentifier"/>.</param>
+        public void Delete(string strIdentifier, int iIndex = 0)
+        {
+            if (!CanWrite)
+            {
+                njError($"Can not delete value \"{strIdentifier}\": The Configuration is Read Only!");
+            }
+            Set(strIdentifier, null, iIndex);
+        }
+
+        /// <summary>
+        /// Deletes all settings with a given identifier, if <see cref="CanWrite"/> is set to true.
+        /// </summary>
+        /// <param name="strIdentifier">The identifier of the setting.</param>
+        public void DeleteAll(string strIdentifier)
+        {
+            if (!CanWrite)
+            {
+                njError($"Can not delete value \"{strIdentifier}\": The Configuration is Read Only!");
+            }
+
+            if (_dicConfigs.TryGetValue(strIdentifier, out List<object> listNodes))
+            {
+                listNodes.Clear();
+            }
+        }
+
         private void ReadConfigurationNode(XmlElement nodeCurrent, string strCurrentNode)
         {
             foreach (XmlElement nodeSub in nodeCurrent.ChildNodes)

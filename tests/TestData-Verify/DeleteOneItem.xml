@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<njageconfig version="1.1">
+  <item value="first index" type="string"/>
+  <item value="third index" type="string"/>
+</njageconfig>

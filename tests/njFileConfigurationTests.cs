@@ -325,6 +325,46 @@ namespace De.Markellus.Njage.Configuration
             CloseTestConfig("ListEnum.xml", config);
         }
 
+        [Test]
+        public void DeleteOneItem()
+        {
+            var config = OpenTestConfig("DeleteOneItem.xml", true);
+            config.LoadConfiguration();
+            Assert.IsTrue(config.IsValid);
+            Assert.AreEqual(3, config.Count);
+            Assert.AreEqual("first index", config.Get("item", "", 0), "Falscher Wert");
+            Assert.AreEqual("second index", config.Get("item", "", 1), "Falscher Wert");
+            Assert.AreEqual("third index", config.Get("item", "", 2), "Falscher Wert");
+            
+            config.Delete("item", 1);
+            
+            Assert.AreEqual(2, config.Count);
+            Assert.AreEqual("first index", config.Get("item", "", 0), "Falscher Wert");
+            Assert.AreEqual("third index", config.Get("item", "", 1), "Falscher Wert");
+            
+            CloseTestConfig("DeleteOneItem.xml", config);
+        }
+
+        [Test]
+        public void DeleteAllItems()
+        {
+            var config = OpenTestConfig("DeleteAllItems.xml", true);
+            config.LoadConfiguration();
+            Assert.IsTrue(config.IsValid);
+            Assert.AreEqual(4, config.Count);
+            Assert.AreEqual("first index", config.Get("item", "", 0), "Falscher Wert");
+            Assert.AreEqual("second index", config.Get("item", "", 1), "Falscher Wert");
+            Assert.AreEqual("third index", config.Get("item", "", 2), "Falscher Wert");
+            Assert.AreEqual("something else", config.Get("itemother", "", 0), "Falscher Wert");
+            
+            config.DeleteAll("item");
+            
+            Assert.AreEqual(1, config.Count);
+            Assert.AreEqual("something else", config.Get("itemother", "", 0), "Falscher Wert");
+            
+            CloseTestConfig("DeleteAllItems.xml", config);
+        }
+
         //TODO: Diverse Get-Fälle: falscher Datentyp geschirben, Fehler beim Parsen, falscher Wert im value-Attribut, etc.
 
 
