@@ -9,6 +9,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Xml;
 using De.Markellus.Njage.NetInternals;
@@ -40,6 +42,15 @@ namespace De.Markellus.Njage.Configuration
         {
             _mutex.WaitOne();
 
+            static void LambdaRegister(Assembly assembly)
+            {
+                foreach (njAbstractConfigNodeParser parser in njReflectiveEnumerator
+                    .GetInstancesOfType<njAbstractConfigNodeParser>(assembly))
+                {
+                    RegisterParser(parser);
+                }
+            }
+
             if (_bAutoRegistered)
             {
                 njWarn("njConfigNodeParserLibrary.AutoRegisterParsers() was called multiple times!");
@@ -49,11 +60,8 @@ namespace De.Markellus.Njage.Configuration
 
             _bAutoRegistered = true;
 
-            foreach (njAbstractConfigNodeParser parser in njReflectiveEnumerator
-                .GetInstancesOfType<njAbstractConfigNodeParser>())
-            {
-                RegisterParser(parser);
-            }
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) LambdaRegister(assembly);
+            AppDomain.CurrentDomain.AssemblyLoad += (sender, args) => LambdaRegister(args.LoadedAssembly);
 
             _mutex.ReleaseMutex();
         }
