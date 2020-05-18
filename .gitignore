@@ -2,4 +2,6 @@
 project/.idea
 project/.vs
 project/obj
+project/De.Markellus.Njage.Configuration.sln.DotSettings.user
+tests/.idea
 tests/obj
