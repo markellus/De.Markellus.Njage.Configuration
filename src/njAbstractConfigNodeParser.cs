@@ -19,7 +19,6 @@ namespace De.Markellus.Njage.Configuration
         /// <summary>
         /// Returns the value of the type attribute of this setting.
         /// </summary>
-        /// <returns></returns>
         public abstract string GetConfigTypeAttribute();
 
         /// <summary>
@@ -45,7 +44,7 @@ namespace De.Markellus.Njage.Configuration
         }
 
         /// <summary>
-        /// ECreates a new instance of the target type from the passed XML node.
+        /// Creates a new instance of the target type from the passed XML node.
         /// </summary>
         /// <param name="node">The XML node from which the value is to be read.</param>
         public abstract object Parse(XmlElement node);

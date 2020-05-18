@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Xml;
 using De.Markellus.Njage.NetInternals;
@@ -18,16 +17,23 @@ using static De.Markellus.Njage.Debugging.njLogger;
 
 namespace De.Markellus.Njage.Configuration
 {
+    /// <summary>
+    /// Static interface, knows all parsers and can use them to process data types and objects
+    /// without the caller having to know the exact implementation.
+    /// </summary>
     public static class njConfigNodeParserLibrary
     {
         private static bool _bAutoRegistered;
         private static Mutex _mutex;
 
         /// <summary>
-        /// List with available configuration types
+        /// Dictionary with available configuration parsers, sorted by their corresponding xml attribute.
         /// </summary>
         private static readonly Dictionary<string, njAbstractConfigNodeParser> _dicParsersByAttribute;
 
+        /// <summary>
+        /// Dictionary with available configuration parsers, sorted by their corresponding type.
+        /// </summary>
         private static readonly Dictionary<Type, njAbstractConfigNodeParser> _dicParsersByType;
 
         static njConfigNodeParserLibrary()
@@ -38,6 +44,11 @@ namespace De.Markellus.Njage.Configuration
             _mutex = new Mutex();
         }
 
+        /// <summary>
+        /// Automatically scans loaded assemblies for configuration parsers and adds them to the dictionaries.
+        /// Assemblies which are loaded after this method has been called will also be scanned.
+        /// This method can only be called once!
+        /// </summary>
         public static void AutoRegisterParsers()
         {
             _mutex.WaitOne();
@@ -68,8 +79,9 @@ namespace De.Markellus.Njage.Configuration
 
         /// <summary>
         /// Registers a new configuration parser.
+        /// Do not use this method if <see cref="AutoRegisterParsers"/>() has been called.
         /// </summary>
-        /// <param name="parser"></param>
+        /// <param name="parser">The new configuration parser.</param>
         public static void RegisterParser(njAbstractConfigNodeParser parser)
         {
             _mutex.WaitOne();
@@ -86,6 +98,12 @@ namespace De.Markellus.Njage.Configuration
             _mutex.ReleaseMutex();
         }
 
+        /// <summary>
+        /// Tries to parse a xml node and returns the parsed object.
+        /// </summary>
+        /// <param name="node">The node which holds the object information.</param>
+        /// <returns>A new object which type corresponds to the type given in the type xml attribute,
+        /// or null if parsing the node has failed.</returns>
         public static object Parse(XmlElement node)
         {
             string strType = node.GetAttribute("type");
@@ -124,6 +142,12 @@ namespace De.Markellus.Njage.Configuration
             return null;
         }
 
+        /// <summary>
+        /// Saves an object into a xml node.
+        /// </summary>
+        /// <param name="node">The node in which the object should be saved.</param>
+        /// <param name="value">The object itself.</param>
+        /// <returns>true, if the object was saved successfully, otherwise false.</returns>
         public static bool Apply(XmlElement node, object value)
         {
             _mutex.WaitOne();
@@ -160,6 +184,11 @@ namespace De.Markellus.Njage.Configuration
             return false;
         }
 
+        /// <summary>
+        /// Returns a type object that matches a type string inside a xml node.
+        /// </summary>
+        /// <param name="strAttribute">The type attribute as string</param>
+        /// <returns>The type object if a parser was found, otherwise null.</returns>
         public static Type GetParserTypeFromAttribute(string strAttribute)
         {
             return _dicParsersByAttribute.TryGetValue(strAttribute, out njAbstractConfigNodeParser parser)
@@ -167,6 +196,11 @@ namespace De.Markellus.Njage.Configuration
                 : null;
         }
 
+        /// <summary>
+        /// Returns an attribute string that matches a type object.
+        /// </summary>
+        /// <param name="type">The type object</param>
+        /// <returns>The attribute string if a parser was found, otherwise null.</returns>
         public static string GetParserAttributeFromType(Type type)
         {
             return _dicParsersByType.TryGetValue(type, out njAbstractConfigNodeParser parser)
@@ -175,6 +209,12 @@ namespace De.Markellus.Njage.Configuration
                     kvp.Value.CanParseChildren() && kvp.Value.GetConfigType().IsAssignableFrom(type)).Key;
         }
 
+        /// <summary>
+        /// Checks if there is a generic parser for a given tpe attribute,
+        /// which may be able to parse a xml node into a generic object.
+        /// </summary>
+        /// <param name="strAttribute">The type attribute as string</param>
+        /// <returns>true, if a generic parser is available, otherwise false.</returns>
         public static bool GetParserHasGenericComponentsFromAttribute(string strAttribute)
         {
             return _dicParsersByAttribute.TryGetValue(strAttribute, out njAbstractConfigNodeParser parser) &&

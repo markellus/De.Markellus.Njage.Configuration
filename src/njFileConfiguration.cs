@@ -22,7 +22,7 @@ namespace De.Markellus.Njage.Configuration
         private XmlDocument _document;
 
         /// <summary>
-        /// Creates a new configuration based on an XML file.
+        /// Creates a new configuration based on a XML file.
         /// </summary>
         /// <param name="strPath">Path to the XML file.</param>
         /// <param name="bWriteable">true if it should be possible to overwrite the configuration, otherwise false.</param>
