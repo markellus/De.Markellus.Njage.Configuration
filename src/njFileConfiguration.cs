@@ -70,7 +70,7 @@ namespace De.Markellus.Njage.Configuration
         private void CreateConfiguration()
         {
             XmlDocument document = new XmlDocument();
-            document.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<njageconfig version=\"1.1\"/>");
+            document.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<" + njGlobalSettings.RootNodeName + " version=\"1.1\"/>");
             document.Save(_streamBackend);
         }
 
@@ -91,11 +91,11 @@ namespace De.Markellus.Njage.Configuration
             }
 
             nodeRoot = _document.DocumentElement;
-            if (nodeRoot.Name != "njageconfig")
+            if (nodeRoot.Name != njGlobalSettings.RootNodeName)
             {
                 njWarn("The file contains no configuration or is incorrect!");
             }
-            else if (_document.DocumentElement.GetAttribute("version") != "1.1")
+            else if (!njGlobalSettings.IgnoreConfigVersion && _document.DocumentElement.GetAttribute("version") != "1.1")
             {
                 njError("Format version is not supported!");
                 IsValid = false;
